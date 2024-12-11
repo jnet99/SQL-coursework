@@ -1,0 +1,37 @@
+# Problem 2. (Using passenger Kris Marrier)
+SELECT TrainName
+FROM TRAIN as TR, PASSENGER as P, TICKETS as TI 
+WHERE TI.PassengerSSN = P.PassengerSSN AND TI.TrainNumber = TR.TrainNumber AND Status = 'Booked' AND FirstName = 'Kris' AND LastName = 'Marrier';
+
+#Problem 3. (Using available day as Monday)
+SELECT FirstName, LastName 
+FROM Passenger P, Tickets TI, Train TR 
+WHERE TI.PassengerSSN=P.PassengerSSN AND TI.TrainNumber=TR.TrainNumber AND (AvailableWeekdays1 = 'Monday' OR AvailableWeekdays2 = 'Monday' OR AvailableWeekdays3 = 'Monday' OR AvailableWeekdays4 = 'Monday' OR AvailableWeekdays5 = 'Monday');
+
+#Problem 4.
+SELECT DISTINCT TR.TrainNumber, TR.TrainName, Source, Destination, FirstName, LastName, Address, TicketType, Status
+FROM Passenger P, Tickets TI, Train TR
+WHERE strftime('%Y', 'now') - strftime('%Y', BirthDate) BETWEEN 50 AND 60;
+
+#Problem 5. (Where TrainNumber is 3)
+SELECT TR.TrainName, AvailableWeekdays1, AvailableWeekdays2, AvailableWeekdays3, AvailableWeekdays4, AvailableWeekdays5, TS.PremiumSeatsOccupied + TS.GenSeatsOccupied AS TotalSeats
+FROM TRAIN TR
+JOIN TRAINSTATUS TS ON TR.TrainName = TS.TrainName
+WHERE TR.TrainNumber = 3;
+
+#Problem 6. (Where TrainName is Flying Scotsman)
+SELECT DISTINCT FirstName, LastName
+FROM PASSENGER P, TICKETS TI, TRAIN TR
+WHERE TI.PassengerSSN = P.PassengerSSN AND TI.TrainNumber = TR.TrainNumber AND Status = 'Booked' AND TR.TrainName = 'Flying Scotsman';
+
+#Problem 7. 
+SELECT DISTINCT FirstName, LastName, TR.TrainName
+FROM PASSENGER P, TICKETS TI, TRAIN TR
+WHERE TI.PassengerSSN = P.PassengerSSN AND TI.TrainNumber = TR.TrainNumber AND Status = 'WaitL';
+
+
+# Problem 8. 
+SELECT FirstName, LastName
+FROM PASSENGER
+WHERE Phone LIKE ‘605%’;
+
